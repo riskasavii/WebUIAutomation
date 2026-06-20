@@ -1,0 +1,18 @@
+{
+  "name": "webuiautomation",
+  "version": "1.0.0",
+  "description": "Tugas Web UI Automation Fundamental",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/**/*.js",
+    "jalanin-mochawesome": "mocha test/**/*.js --reporter mochawesome"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^10.2.0",
+    "mochawesome": "^7.1.3",
+    "selenium-webdriver": "^4.10.0"
+  }
+}
