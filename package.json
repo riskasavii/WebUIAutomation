@@ -1,0 +1,17 @@
+{
+  "name": "web-ui-automation-2",
+  "version": "1.0.0",
+  "description": "Tugas Automation Sesi 11 - Saucedemo",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx mocha specs/**/*.spec.js --timeout 30000",
+    "test:positive": "npx mocha specs/**/*.spec.js --timeout 30000 --grep \"Positive\""
+  },
+  "dependencies": {
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0",
+    "pixelmatch": "^5.3.0",
+    "pngjs": "^6.0.0",
+    "selenium-webdriver": "^4.10.0"
+  }
+}
