@@ -4,6 +4,7 @@ const LoginPage = require('../page/LoginPage');
 const InventoryPage = require('../page/InventoryPage');
 const ScreenshotPage = require('../page/ScreenshotPage');
 const VisualRegressionHelper = require('../utilities/VisualRegressionHelper');
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 describe('Saucedemo POM & Visual Regression Automation Suite', function () {
   let driver;
@@ -46,19 +47,28 @@ describe('Saucedemo POM & Visual Regression Automation Suite', function () {
 
     // Add to cart
     await inventoryPage.addBackpackToCart();
+    await inventoryPage.clickCart(); // Masuk ke halaman Cart
+    await sleep(3500);
     const badgeCount = await inventoryPage.getCartBadgeCount();
     expect(badgeCount).to.equal('1');
 
     // Checkout Process
     await inventoryPage.clickCart();
     await inventoryPage.clickCheckout();
+    await sleep(3500);
     await inventoryPage.inputInformation('Riska', 'Safitri', '10110');
     await inventoryPage.clickContinue();
     await inventoryPage.clickFinish();
+
+    // Capture HALAMAN CART
+    await screenshotAction.takeFullScreenshot('current/cart_page.png');
     
     // Assertion 2: Memastikan berhasil checkout sempurna
     const completeHeader = await inventoryPage.getCompleteHeader();
     expect(completeHeader).to.equal('Thank you for your order!');
+
+    // SCREENSHOT HALAMAN SUKSES CHECKOUT
+    await screenshotAction.takeFullScreenshot('current/checkout_complete.png');
   });
 
   // ==================== NEGATIVE TEST CASES ====================
@@ -97,4 +107,4 @@ describe('Saucedemo POM & Visual Regression Automation Suite', function () {
     const vrResult4 = await visualRegression.compareImages('locked_out_user.png');
     expect(vrResult4.matchPercentage).to.be.at.least(95, `Visual mismatch too high! Match rate: ${vrResult4.matchPercentage}%`);
   });
-}); // <--- Tanda kurung penutup utama describe() pastikan aman di sini
+}); 

@@ -28,6 +28,7 @@ class InventoryPage {
 
   async clickCheckout() {
     const checkoutBtn = await this.driver.wait(until.elementLocated(By.id(INVENTORY_LOCATORS.selectors.checkoutButton.value)), 5000);
+    await this.driver.wait(until.elementIsVisible(checkoutBtn), 3000);
     await checkoutBtn.click();
   }
 
