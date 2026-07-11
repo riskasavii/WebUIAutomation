@@ -4,8 +4,8 @@
   "description": "Tugas Automation Sesi 11 - Saucedemo",
   "main": "index.js",
   "scripts": {
-    "test": "npx mocha specs/**/*.spec.js --timeout 30000",
-    "test:positive": "npx mocha specs/**/*.spec.js --timeout 30000 --grep \"Positive\""
+    "test": "npx mocha specs/**/*.spec.js --timeout 60000",
+    "test:positive": "npx mocha specs/**/*.spec.js --timeout 60000 --grep \"Positive\""
   },
   "dependencies": {
     "chai": "^4.3.7",

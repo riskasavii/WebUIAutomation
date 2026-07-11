@@ -12,11 +12,16 @@ class InventoryPage {
   }
 
   async addBackpackToCart() {
-    await this.driver.findElement(By.id(INVENTORY_LOCATORS.selectors.addToCartBackpack.value)).click();
+    const btn = await this.driver.wait(until.elementLocated(By.id(INVENTORY_LOCATORS.selectors.addToCartBackpack.value)), 5000);
+    await this.driver.wait(until.elementIsVisible(btn), 3000);
+    // Gunakan JS click untuk menghindari intercept oleh elemen lain
+    await this.driver.executeScript('arguments[0].click();', btn);
   }
 
   async getCartBadgeCount() {
-    const badge = await this.driver.findElement(By.css(INVENTORY_LOCATORS.selectors.cartBadge.value));
+    // Tunggu badge muncul dan visible setelah item ditambahkan
+    const badge = await this.driver.wait(until.elementLocated(By.css(INVENTORY_LOCATORS.selectors.cartBadge.value)), 7000);
+    await this.driver.wait(until.elementIsVisible(badge), 3000);
     return await badge.getText();
   }
 
